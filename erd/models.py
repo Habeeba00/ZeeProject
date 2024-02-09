@@ -84,9 +84,11 @@ class Reminder (models.Model):
     EndDate=models.DateTimeField()
     State=models.BooleanField(null=False,blank=True)
     AlarmRecordes=models.TimeField()
+    Audio = models.FileField(upload_to='audio/', null=False, default='default_audio.mp3')
     Notes=models.TextField(max_length=50)
     def __str__(self):
-        return self.ReminderID
+        # return self.ReminderID
+        return str(self.ReminderID)
     class Meta:
         ordering=['ReminderID']
 
