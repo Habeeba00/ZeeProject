@@ -1,1 +1,1 @@
-web: gunicorn tabled.wsgi --log-file -
+web: gunicorn tabled.wsgi
