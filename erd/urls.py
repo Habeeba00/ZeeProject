@@ -1,6 +1,6 @@
 from django.urls import path,include
 from .import views 
-from .views import GetPatient ,GetEscort,GetDiseases,GetDocument,GetReminder,GetMedicine
+from .views import GetPatient ,GetEscort,GetDiseases,GetDocument,GetReminder,GetMedicine,GetLogin,GetRegister
 from rest_framework.routers import DefaultRouter
 
 
@@ -12,6 +12,8 @@ router.register(r'Reminder', views.GetReminder,basename='Reminder')
 router.register(r'Diseases', views.GetDiseases,basename='Diseases')
 router.register(r'Document', views.GetDocument,basename='Document')
 router.register(r'Medicine', views.GetMedicine,basename='Medicine')
+router.register(r'Login', views.GetLogin,basename='Login')
+router.register(r'Register', views.GetRegister,basename='Register')
 
 urlpatterns = [
     path('api/', include(router.urls)),
