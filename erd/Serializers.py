@@ -1,5 +1,15 @@
 from rest_framework import serializers
-from .models import patient,Escort,Medicine,Diseases,Document,Reminder
+from .models import patient,Escort,Medicine,Diseases,Document,Reminder,Register,Login
+
+
+class RegisterSerializers(serializers.ModelSerializer):
+    class Meta:
+        model= Register 
+        fields="__all__"
+class LoginSerializers(serializers.ModelSerializer):
+    class Meta:
+        model= Login 
+        fields="__all__"
 
 class pSerializers(serializers.ModelSerializer):
     class Meta:

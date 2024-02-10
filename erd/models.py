@@ -6,6 +6,17 @@ from datetime import datetime
 # Create your models here.
 
 
+
+class Login(models.Model):
+    Username=models.CharField(primary_key=True,max_length=100,blank=False)
+    Password=models.CharField(max_length=100,blank=False)
+class Register(models.Model):
+    Username=models.CharField(primary_key=True,max_length=100,blank=False)
+    Password=models.CharField(max_length=100,blank=False)
+    RePassword=models.CharField(max_length=100,blank=False)
+    UserName=models.CharField(max_length=100,blank=False)
+    PhoneNumber=models.CharField(null=False,blank=False,max_length=14)
+
 class Diseases(models.Model):
     DiseasesID=models.CharField(primary_key=True,max_length=100)
     Deasesname=models.CharField(max_length=100)

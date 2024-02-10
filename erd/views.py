@@ -1,10 +1,16 @@
-from .Serializers import pSerializers,ESerializers,RSerializers,DOSerializers,DSerializers,MSerializers
+from .Serializers import pSerializers,ESerializers,RSerializers,DOSerializers,DSerializers,MSerializers,RegisterSerializers,LoginSerializers
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import viewsets
-from .models import patient,Escort,Medicine,Diseases,Document,Reminder
+from .models import patient,Escort,Medicine,Diseases,Document,Reminder,Register,Login
 
 
+class GetRegister(viewsets.ModelViewSet):
+    queryset = Register.objects.all()
+    serializer_class = RegisterSerializers
+class GetLogin(viewsets.ModelViewSet):
+    queryset = Login.objects.all()
+    serializer_class = LoginSerializers
 
 class GetPatient(viewsets.ModelViewSet):
     queryset = patient.objects.all()
