@@ -10,19 +10,32 @@ from datetime import datetime
 class Login(models.Model):
     Userhandel=models.CharField(primary_key=True,max_length=100,blank=False)
     Password=models.CharField(max_length=100,blank=False)
+    def __str__(self):
+        return self.Userhandel
+    class Meta:
+        ordering=['Userhandel']
 
     
 class Register(models.Model):
     name=models.CharField(primary_key=True,max_length=100,blank=False)
+    emaill=models.CharField(max_length=100,null=False,blank=False)
     Password=models.CharField(max_length=100,blank=False)
     RePassword=models.CharField(max_length=100,blank=False)
     PhoneNumber=models.CharField(null=False,blank=False,max_length=14)
+    def __str__(self):
+        return self.name
+    class Meta:
+        ordering=['name']
 
 class Diseases(models.Model):
     DiseasesID=models.CharField(primary_key=True,max_length=100)
     Deasesname=models.CharField(max_length=100)
     DeasesDiscription=models.CharField(max_length=100)
     commen_symptoms=models.CharField(max_length=100)
+    def __str__(self):
+        return self.Deasesname
+    class Meta:
+        ordering=['Deasesname']
 
 
 
@@ -40,9 +53,9 @@ class Escort(models.Model):
     LastModified=models.DateTimeField(auto_now=True,null=False,blank=False)
 
     def __str__(self):
-        return self.UserName
+        return self.yourHandel
     class Meta:
-        ordering=['EscortID']
+        ordering=['yourHandel']
 
 
 
@@ -63,9 +76,9 @@ class patient(models.Model):
     deflut=models.OneToOneField(Escort,on_delete=models.CASCADE,null=True)
 
     def __str__(self):
-        return self.UserName
+        return self.Handel
     class Meta:
-        ordering=['patientID']
+        ordering=['Handel']
 
 
 
@@ -113,3 +126,8 @@ class Document(models.Model):
     exrays_test=models.ImageField(upload_to='photos%y%m%d')
     diseasesId=models.IntegerField()
     escortID=models.IntegerField()
+
+    def __str__(self):
+        return self.patientId
+    class Meta:
+        ordering=['patientId']
