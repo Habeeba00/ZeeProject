@@ -8,6 +8,7 @@ from .models import patient,Escort,Medicine,Diseases,Document,Reminder,Register,
 class GetRegister(viewsets.ModelViewSet):
     queryset = Register.objects.all()
     serializer_class = RegisterSerializers
+
 class GetLogin(viewsets.ModelViewSet):
     queryset = Login.objects.all()
     serializer_class = LoginSerializers
@@ -52,9 +53,38 @@ class GetDiseases(viewsets.ModelViewSet):
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework import generics
 from rest_framework.response import Response
-from.models import patient, Escort, Reminder, Diseases, Document, Medicine
-from .Serializers import pSerializers,ESerializers,RSerializers,DOSerializers,DSerializers,MSerializers
+from.models import patient, Escort, Reminder, Diseases, Document, Medicine,Register,Login
+from .Serializers import pSerializers,ESerializers,RSerializers,DOSerializers,DSerializers,MSerializers,RegisterSerializers,LoginSerializers
 
+
+
+class RegisterList(generics.ListAPIView):
+    queryset = Register.objects.all()
+    serializer_class = RegisterSerializers
+    def get_extra_actions(self):
+        return []
+
+    @swagger_auto_schema(responses={
+        200: RegisterSerializers(many=True)
+    })
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+    
+    
+class LoginList(generics.ListAPIView):
+    queryset = Login.objects.all()
+    serializer_class = LoginSerializers
+    def get_extra_actions(self):
+        return []
+
+    @swagger_auto_schema(responses={
+        200: LoginSerializers(many=True)
+    })
+    def get(self, request, *args, **kwargs):
+        return super().get(request, *args, **kwargs)
+
+
+    
 class PatientList(generics.ListAPIView):
     queryset = patient.objects.all()
     serializer_class = pSerializers

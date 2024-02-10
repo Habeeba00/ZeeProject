@@ -8,13 +8,14 @@ from datetime import datetime
 
 
 class Login(models.Model):
-    Username=models.CharField(primary_key=True,max_length=100,blank=False)
+    Userhandel=models.CharField(primary_key=True,max_length=100,blank=False)
     Password=models.CharField(max_length=100,blank=False)
+
+    
 class Register(models.Model):
-    Username=models.CharField(primary_key=True,max_length=100,blank=False)
+    name=models.CharField(primary_key=True,max_length=100,blank=False)
     Password=models.CharField(max_length=100,blank=False)
     RePassword=models.CharField(max_length=100,blank=False)
-    UserName=models.CharField(max_length=100,blank=False)
     PhoneNumber=models.CharField(null=False,blank=False,max_length=14)
 
 class Diseases(models.Model):
@@ -32,7 +33,7 @@ class Escort(models.Model):
     Email=models.CharField(max_length=100,blank=False)
     Password=models.CharField(max_length=100,blank=False)
     PhoneNumber=models.CharField(null=False,blank=False,max_length=14)
-    UserName=models.CharField(max_length=100,blank=False)
+    yourHandel=models.CharField(max_length=100,blank=False)
     ProfilePicture=models.ImageField(upload_to='photos%y%m%d')
     Male=models.BooleanField(default=True)
     Female=models.BooleanField(default=False)
@@ -41,7 +42,7 @@ class Escort(models.Model):
     def __str__(self):
         return self.UserName
     class Meta:
-        ordering=['UserName']
+        ordering=['EscortID']
 
 
 
@@ -55,7 +56,7 @@ class patient(models.Model):
     Email=models.CharField(max_length=100)
     Password=models.CharField(max_length=100,blank=False)
     PhoneNumber=models.CharField(null=False,blank=False,max_length=100)
-    UserName=models.CharField(max_length=100)
+    Handel=models.CharField(max_length=100)
     ProfilePicture=models.ImageField(upload_to='photos%y%m%d')
     Male=models.BooleanField(default=True)
     Female=models.BooleanField(default=False)
@@ -64,7 +65,7 @@ class patient(models.Model):
     def __str__(self):
         return self.UserName
     class Meta:
-        ordering=['UserName']
+        ordering=['patientID']
 
 
 
