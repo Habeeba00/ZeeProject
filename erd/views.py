@@ -3,6 +3,8 @@ from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import viewsets
 from .models import patient,Escort,Medicine,Diseases,Document,Reminder,Register,Login
+from drf_yasg.utils import swagger_auto_schema
+from rest_framework.response import Response
 
 
 class GetRegister(viewsets.ModelViewSet):
@@ -12,6 +14,9 @@ class GetRegister(viewsets.ModelViewSet):
 class GetLogin(viewsets.ModelViewSet):
     queryset = Login.objects.all()
     serializer_class = LoginSerializers
+
+
+    
 
 class GetPatient(viewsets.ModelViewSet):
     queryset = patient.objects.all()
@@ -41,20 +46,39 @@ class GetDiseases(viewsets.ModelViewSet):
 
 
 
-# @api_view(['GET'])
+
+
+
+# from django.http import JsonResponse
+# from django.views.decorators.csrf import csrf_exempt
+# from rest_framework.decorators import api_view
+
+
+
+
+
+
+# @api_view(['POST'])
 # def showmultiplemodels(request):
 #     patientt=patient.objects.all()
 #     Escortt=Escort.objects.all()
 #     ppSerializers=pSerializers(patientt,many=True)
 #     EESerializers=ESerializers(patientt,many=True)
 #     Resultmodel=ppSerializers.data+EESerializers.data
-#     return response(Resultmodel)
+#     return JsonResponse(Resultmodel)
+    
+# @csrf_exempt
+# @api_view(['POST'])
+# def Login(request):
+#     if request.method == 'POST':
+#         Userhandel = request.POST.get('Userhandel')
+#         Password = request.POST.get('Password')
 
-from drf_yasg.utils import swagger_auto_schema
-from rest_framework import generics
-from rest_framework.response import Response
-from.models import patient, Escort, Reminder, Diseases, Document, Medicine,Register,Login
-from .Serializers import pSerializers,ESerializers,RSerializers,DOSerializers,DSerializers,MSerializers,RegisterSerializers,LoginSerializers
+#         # Perform authentication and database operations as needed
+#         # ...
+
+#         return JsonResponse({'message': 'Login successful'})
+#     return JsonResponse({'message': 'Invalid request method'})
 
 
 
@@ -71,17 +95,28 @@ class RegisterList(generics.ListAPIView):
         return super().get(request, *args, **kwargs)
     
     
-class LoginList(generics.ListAPIView):
-    queryset = Login.objects.all()
-    serializer_class = LoginSerializers
-    def get_extra_actions(self):
-        return []
+# class LoginList(generics.ListAPIView):
+#     queryset = Login.objects.all()
+#     serializer_class = LoginSerializers
+#     def get_extra_actions(self):
+#         return []
 
-    @swagger_auto_schema(responses={
-        200: LoginSerializers(many=True)
-    })
-    def get(self, request, *args, **kwargs):
-        return super().get(request, *args, **kwargs)
+#     @swagger_auto_schema(responses={
+#         200: LoginSerializers(many=True)
+#     })
+#     def get(self, request, *args, **kwargs):
+#         return super().get(request, *args, **kwargs)
+    from rest_framework import status
+from rest_framework.response import Response
+from drf_yasg.utils import swagger_auto_schema
+from rest_framework.generics import CreateAPIView
+
+class LoginList(CreateAPIView):
+    serializer_class = LoginSerializers
+
+    @swagger_auto_schema(responses={200: LoginSerializers(many=True)})
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
 
 
     

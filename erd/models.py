@@ -28,7 +28,7 @@ class Register(models.Model):
         ordering=['name']
 
 class Diseases(models.Model):
-    DiseasesID=models.CharField(primary_key=True,max_length=100)
+    DiseasesID=models.AutoField(primary_key=True)
     Deasesname=models.CharField(max_length=100)
     DeasesDiscription=models.CharField(max_length=100)
     commen_symptoms=models.CharField(max_length=100)

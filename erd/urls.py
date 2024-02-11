@@ -17,6 +17,7 @@ router.register(r'Register', views.GetRegister,basename='Register')
 
 urlpatterns = [
     path('api/', include(router.urls)),
+    # path('Login/', views.GetLogin.as_view(), name='Login'),
     # path('patients/', GetPatient.as_view(), name='patient'),
     # path('escorts/', views.GetEscort.as_view(), name='Escort'),
     # path('reminders/', views.GetReminder.as_view(), name='Reminder'),
