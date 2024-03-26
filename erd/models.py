@@ -15,8 +15,8 @@ class Login(models.Model):
     class Meta:
         ordering=['Userhandel']
 
-    
-class Register(models.Model):
+
+class User(models.Model):
     name=models.CharField(primary_key=True,max_length=100,blank=False)
     emaill=models.CharField(max_length=100,null=False,blank=False)
     Password=models.CharField(max_length=100,blank=False)
